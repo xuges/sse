@@ -1,7 +1,7 @@
 # Server-Sent Events
 
-[![GoDoc](https://godoc.org/github.com/gin-contrib/sse?status.svg)](https://godoc.org/github.com/gin-contrib/sse)
-[![Build Status](https://travis-ci.org/gin-contrib/sse.svg)](https://travis-ci.org/gin-contrib/sse)
+[![Go Reference](https://pkg.go.dev/badge/github.com/gin-contrib/sse.svg)](https://pkg.go.dev/github.com/gin-contrib/sse)
+[![Build Status](https://github.com/gin-contrib/sse/actions/workflows/go.yml/badge.svg)](https://github.com/gin-contrib/sse/actions/workflows/go.yml)
 [![codecov](https://codecov.io/gh/gin-contrib/sse/branch/master/graph/badge.svg)](https://codecov.io/gh/gin-contrib/sse)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gin-contrib/sse)](https://goreportcard.com/report/github.com/gin-contrib/sse)
 
