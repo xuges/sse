@@ -170,22 +170,25 @@ func TestEncodeFloat(t *testing.T) {
 func TestEncodeStream(t *testing.T) {
 	w := new(bytes.Buffer)
 
-	Encode(w, Event{
+	_ = Encode(w, Event{
 		Event: "float",
 		Data:  1.5,
 	})
 
-	Encode(w, Event{
+	_ = Encode(w, Event{
 		Id:   "123",
 		Data: map[string]interface{}{"foo": "bar", "bar": "foo"},
 	})
 
-	Encode(w, Event{
+	_ = Encode(w, Event{
 		Id:    "124",
 		Event: "chat",
 		Data:  "hi! dude",
 	})
-	assert.Equal(t, w.String(), "event:float\ndata:1.5\n\nid:123\ndata:{\"bar\":\"foo\",\"foo\":\"bar\"}\n\nid:124\nevent:chat\ndata:hi! dude\n\n")
+	assert.Equal(t, w.String(),
+		"event:float\ndata:1.5\n\n"+
+			"id:123\ndata:{\"bar\":\"foo\",\"foo\":\"bar\"}\n\n"+
+			"id:124\nevent:chat\ndata:hi! dude\n\n")
 }
 
 func TestRenderSSE(t *testing.T) {
@@ -207,7 +210,7 @@ func BenchmarkResponseWriter(b *testing.B) {
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		(Event{
+		_ = (Event{
 			Event: "new_message",
 			Data:  "hi! how are you? I am fine. this is a long stupid message!!!",
 		}).Render(w)
@@ -219,7 +222,7 @@ func BenchmarkFullSSE(b *testing.B) {
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		Encode(buf, Event{
+		_ = Encode(buf, Event{
 			Event: "new_message",
 			Id:    "13435",
 			Retry: 10,
@@ -234,7 +237,7 @@ func BenchmarkNoRetrySSE(b *testing.B) {
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		Encode(buf, Event{
+		_ = Encode(buf, Event{
 			Event: "new_message",
 			Id:    "13435",
 			Data:  "hi! how are you? I am fine. this is a long stupid message!!!",
@@ -248,7 +251,7 @@ func BenchmarkSimpleSSE(b *testing.B) {
 	b.ResetTimer()
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		Encode(buf, Event{
+		_ = Encode(buf, Event{
 			Event: "new_message",
 			Data:  "hi! how are you? I am fine. this is a long stupid message!!!",
 		})
